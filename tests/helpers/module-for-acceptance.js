@@ -4,6 +4,12 @@ import destroyApp from '../helpers/destroy-app';
 
 export default function(name, options = {}) {
   module(name, {
+    before() {
+      if (options.before) {
+        options.before.apply(this, arguments);
+        console.log('this is before in module-for-acceptance');
+      }
+    },
     beforeEach() {
       this.application = startApp();
 
